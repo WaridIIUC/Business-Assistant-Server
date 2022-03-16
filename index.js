@@ -90,9 +90,12 @@ client.connect(err => {
     adminsCollection.find({ "email": email, "passwordAdmin": password })
         .toArray((err, documents) => {
           console.log(documents[0]);
-          documents[0].passwordAdmin = "123456";
           if(documents.length > 0){
+            documents[0].passwordAdmin = "123456";
             res.send(documents[0]);
+          }
+          else{
+            res.send(documents);
           }
         })
 })
